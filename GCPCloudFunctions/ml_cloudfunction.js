@@ -8,13 +8,13 @@ exports.helloGCS = (event, context) => {
   bucketName = event.bucket;
   fileName = event.name;
   const filebucket = storage.bucket(bucketName).file(fileName);
-  var fileData
+  var datafromfile
   filebucket.download(function(err, contents) {
         if(err) console.log("file err: "+err);  
         else {
-            fileData = new Buffer.from(contents).toString();
+            datafromfile = new Buffer.from(contents).toString();
         }
-        functionForPredict(fileData)
+        functionForPredict(datafromfile)
         .then( (output) => {
            let tempfile = '/tmp/'+fileName
            fs.writeFileSync(tempfile, output)
@@ -30,13 +30,13 @@ exports.helloGCS = (event, context) => {
     }); 
 };
 
-const functionForPredict = async (fileData) => {
+const functionForPredict = async (datafromfile) => {
 
     const projectId = 'serverlessproject-320719';
     const location = 'us-central1';
     const modelId = 'TCN4484288354896052224';
-    const content = fileData;
-    console.log(fileData);
+    const content = datafromfile;
+    console.log(datafromfile);
 
     const {PredictionServiceClient} = require('@google-cloud/automl').v1;
     console.log('predictservice client created');
