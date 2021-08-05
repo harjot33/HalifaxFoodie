@@ -16,7 +16,7 @@ const onFileUpload = (event) => {
     method: 'post',
     url: 'https://backend-yfg27siima-uc.a.run.app/api/upload/uploadrecipe',
     data: {
-      msg: 'testing',
+      msg: 'upload',
       text: text,
     },
     headers: { 'Content-Type': 'application/json' },
@@ -32,7 +32,7 @@ const onFileUpload = (event) => {
     });
 };
 
-const handleTextBox = (event) => {
+const textbox = (event) => {
   setText(event.target.value);
 };
 
@@ -48,7 +48,7 @@ return(
               style={{ marginTop: '5%', marginRight: '2%' }}
               onSubmit={onFileUpload}
             >
-              <textarea style={{ width: '50%', height: '100%' }} onChange={handleTextBox} value={text}></textarea>
+              <textarea style={{ width: '50%', height: '100%' }} onChange={textbox} value={text}></textarea>
               <button style={{ marginLeft: '2%', marginRight: '10%' }} onClick={onFileUpload}>Upload!</button>
             </form>
           </div>
